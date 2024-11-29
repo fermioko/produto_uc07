@@ -3,6 +3,8 @@ package br.senac.sp.produto.controller.mvc;
 import br.senac.sp.produto.controller.ProdutoRequest;
 import br.senac.sp.produto.model.Produto;
 import br.senac.sp.produto.repository.ProdutoRepository;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -13,6 +15,8 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("produtos")
+@Tag(name = "MVC - Produto Controller API",
+        description = "Controller para tratar requisições de Produtos na API")
 public class ProdutoControllerMvc {
 
     private final ProdutoRepository produtoRepository;
@@ -34,6 +38,8 @@ public class ProdutoControllerMvc {
 //    }
 
     @GetMapping("/listar")
+    @Operation(summary = "Recuperar Todos",
+            description = "Retorna todos os produtos")
     public String exibirProdutos(
             @RequestParam(defaultValue = "0") int page, // Página atual
             @RequestParam(defaultValue = "10") int size, // Tamanho da página
