@@ -191,6 +191,18 @@ public class ProdutoControllerApi {
         return  ResponseEntity.ok(valores);
     }
 
+    @PostMapping("/validar-num/{num}")
+    @Operation(summary = "Adivinhar Numero",
+            description = "Adivinhar numero gerado entre 0 e 10")
+    public ResponseEntity<String> validarNum(@PathVariable("num") Integer numero){
+        //Gerar numero de 0 a 10
+        int numeroGerado = (int)(Math.random() *10);
+        if(numero.equals(numeroGerado)){
+            return ResponseEntity.ok("Acertou!!!");
+        }
+        throw new RuntimeException("Errou!!!, o Numero foi " +numeroGerado);
+    }
+
 
 
 //    p.setId(id);
