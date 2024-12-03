@@ -6,6 +6,7 @@ import br.senac.sp.produto.repository.ProdutoRepository;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -47,7 +48,7 @@ public class ProdutoControllerApi {
     }
 
     @PostMapping("/cadastrar")
-    public ResponseEntity<Produto>cadastrar(@RequestBody ProdutoRequest request){
+    public ResponseEntity<Produto>cadastrar(@Valid @RequestBody ProdutoRequest request){
         var p = new Produto().setDescricao(request.getDescricao())
                 .setPreco(request.getPreco())
                 .setQuantidade(request.getQuantidade())
